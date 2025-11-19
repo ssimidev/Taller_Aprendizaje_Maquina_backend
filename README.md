@@ -60,7 +60,3 @@ Modelos entrenados con validación cruzada y almacenados como artefactos reprodu
 ### **RNF-06 – Monitoreabilidad**
 Estructura preparada para Prometheus y logging estructurado.
 
----
-
-## 📁 Estructura del Proyecto
-
