@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+*.pkl
+shap_explainer/
+ml/preprocess.pkl
+ml/model_rf.pkl
+ml/model_xgb.pkl
+

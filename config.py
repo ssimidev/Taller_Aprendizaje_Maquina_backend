@@ -1,0 +1,2 @@
+JWT_SECRET = "MI_SECRETO_SUPER_SEGURO_123"   # cambia esto en producción
+JWT_ALGORITHM = "HS256"
