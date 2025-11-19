@@ -60,3 +60,22 @@ Modelos entrenados con validación cruzada y almacenados como artefactos reprodu
 ### **RNF-06 – Monitoreabilidad**
 Estructura preparada para Prometheus y logging estructurado.
 
+El backend está organizado en módulos independientes:
+
+- **auth/** → manejo de JWT y autenticación  
+- **ml/** → carga de modelos, preprocesamiento y SHAP  
+- **routers/** → definiciones de endpoints  
+- **models/** → modelos ORM de SQLAlchemy  
+- **schemas/** → validación de datos con Pydantic  
+- **database.py** → conexión SQLite  
+- **main.py** → configuración de la API y middleware  
+
+---
+
+### **Ejecutar Servidor **
+uvicorn main:app --reload
+
+### **Crear usuario administrador **
+python create_user.py
+
+
