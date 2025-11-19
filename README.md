@@ -77,9 +77,6 @@ pip install -r requirements.txt
 ### **Crear usuario administrador **
 python create_user.py
 
-### **Crear usuario administrador **
-python create_user.py
-
 ### **Ejecutar Servidor **
 uvicorn main:app --reload
 
