@@ -6,4 +6,5 @@ predict_router = APIRouter(tags=["Prediction"])
 
 @predict_router.post("/predict", dependencies=[Depends(JWTBearer())])
 def predict_endpoint(data: dict = Body(...)):
-    return predict(data)
+    model_name = data.get("model", "rf")  
+    return predict(data, model_name=model_name)

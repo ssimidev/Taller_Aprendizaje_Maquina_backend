@@ -1,82 +1,59 @@
-# Backend – Taller de Aprendizaje de Máquina  
-API para predicción, explicación y recomendación de calidad del sueño
+# Backend – Sistema de Predicción de Calidad del Sueño
+
+Este backend está desarrollado con **FastAPI** y permite:
+
+- Recibir datos desde un formulario del usuario  
+- Predecir la calidad del sueño usando modelos de Machine Learning  
+- Generar explicaciones SHAP sobre qué influyó en la predicción  
+- Entregar recomendaciones personalizadas  
+- Conectarse con el frontend para mostrar resultados en un dashboard  
+
+Es parte del proyecto **Taller de Aprendizaje de Máquina**.
 
 ---
 
-## Descripción del Proyecto
+## Requisitos Previos
 
-Este backend implementa una API desarrollada con **FastAPI** que permite predecir la calidad del sueño (1–10), clasificar posibles trastornos (Insomnia y Sleep Apnea), generar explicaciones mediante **SHAP** y entregar recomendaciones personalizadas según los factores más influyentes.  
-Es consumido por un frontend desarrollado en React y forma parte de un sistema integral orientado a salud preventiva y apoyo a la toma de decisiones.
-
-El backend cumple con los **requerimientos funcionales y no funcionales**, incorporando autenticación segura, modelos de Machine Learning, pipeline de preprocesamiento, modularidad y arquitectura apta para despliegue en la nube.
-
----
-
-## ✔ Requerimientos Funcionales
-
-### **RF-01 – Onboarding de Usuario**
-Permite registrar y autenticar usuarios utilizando JWT y passwords cifrados con Argon2.
-
-### **RF-02 – Formulario de Entrada**
-Recibe datos enviados desde el frontend y los valida mediante Pydantic antes de procesarlos.
-
-### **RF-03 – Procesamiento y Predicción**
-El endpoint `/predict` ejecuta:
-- Preprocesamiento (ColumnTransformer)
-- Modelos ML (Random Forest / XGBoost)
-- Obtención de predicciones numéricas y categóricas
-
-### **RF-04 – Dashboard de Resultados**
-La API entrega la predicción lista para visualización en el frontend.
-
-### **RF-05 – Explicabilidad (XAI)**
-El endpoint `/explain` devuelve valores SHAP de las características utilizadas.
-
-### **RF-06 – Historial y Tendencias**
-El sistema permite extenderse para almacenar predicciones por usuario.
+- Python 3.10+
+- pip instalado
+- Dataset `Sleep_dataset.csv`
 
 ---
 
-## ✔ Requerimientos No Funcionales
+## Instalación Rápida
 
-### **RNF-01 – Usabilidad**
+### 1️Clonar el repositorio
 
-### **RNF-02 – Explicabilidad**
-SHAP integrado para interpretar el modelo.
+git clone <url-del-repo>
+cd Taller_Aprendizaje_Maquina_backend
 
-### **RNF-03 – Escalabilidad**
-Arquitectura modular apta para AWS Lambda + API Gateway.
+### Crear entorno virtual (opcional)
+python -m venv venv
+source venv/bin/activate     # macOS / Linux
+venv\Scripts\activate        # Windows
 
-### **RNF-04 – Seguridad**
-Incluye:
-- JWT Bearer
-- Argon2 para contraseñas
-- CORS configurado
-- Validación estricta con Pydantic
-
-### **RNF-05 – Confiabilidad**
-Modelos entrenados con validación cruzada y almacenados como artefactos reproducibles.
-
-### **RNF-06 – Monitoreabilidad**
-Estructura preparada para Prometheus y logging estructurado.
-
-El backend está organizado en módulos independientes:
-
-- **auth/** → manejo de JWT y autenticación  
-- **ml/** → carga de modelos, preprocesamiento y SHAP  
-- **routers/** → definiciones de endpoints  
-- **models/** → modelos ORM de SQLAlchemy  
-- **schemas/** → validación de datos con Pydantic  
-- **database.py** → conexión SQLite  
-- **main.py** → configuración de la API y middleware  
-
----
-### ** Instalar requirements **
+## Instalar dependencias
 pip install -r requirements.txt
 
-### **Crear usuario administrador **
+
+## Colocar el dataset en la carpeta /ml
+/ml/Sleep_dataset.csv
+
+## Ejecutar el script de entrenamiento
+python ml/train_model_backend_safe.py
+
+
+## Crear Usuario Administrador
 python create_user.py
 
-### **Ejecutar Servidor **
-uvicorn main:app --reload
+## Ejecutar el Servidor
+Ejecutar el Servidor
 
+
+## Estructura del Proyecto
+/ml               → Modelos, SHAP, preprocesador y scripts de entrenamiento
+/auth             → Login, registro y JWT
+/routers          → Endpoints de la API
+/schemas          → Validación con Pydantic
+/models           → ORM con SQLAlchemy
+main.py           → Configuración principal del backend

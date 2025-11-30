@@ -6,10 +6,13 @@ class JWTBearer(HTTPBearer):
     async def __call__(self, request: Request):
         credentials: HTTPAuthorizationCredentials = await super().__call__(request)
 
-        if credentials:
-            token = credentials.credentials
-            if decode_jwt(token) is None:
-                raise HTTPException(status_code=403, detail="Token expirado o inválido")
-            return token
+        if not credentials:
+            raise HTTPException(status_code=403, detail="Token faltante")
 
-        raise HTTPException(status_code=403, detail="Token faltante")
+        token = credentials.credentials
+        payload = decode_jwt(token)
+
+        if payload is None:
+            raise HTTPException(status_code=403, detail="Token expirado o inválido")
+
+        return payload["user_id"]  

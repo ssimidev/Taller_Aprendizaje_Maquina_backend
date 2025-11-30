@@ -1,5 +1,5 @@
 import time
-import jwt
+from jose import jwt
 from config import JWT_SECRET, JWT_ALGORITHM
 
 def sign_jwt(user_id: str):
