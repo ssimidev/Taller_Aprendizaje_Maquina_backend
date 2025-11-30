@@ -47,7 +47,7 @@ python ml/train_model_backend_safe.py
 python create_user.py
 
 ## Ejecutar el Servidor
-Ejecutar el Servidor
+uvicorn main:app --reload
 
 
 ## Estructura del Proyecto
