@@ -22,7 +22,7 @@ Es parte del proyecto **Taller de Aprendizaje de Máquina**.
 
 ## Instalación Rápida
 
-### 1️Clonar el repositorio
+### Clonar el repositorio
 
 git clone <url-del-repo>
 cd Taller_Aprendizaje_Maquina_backend
